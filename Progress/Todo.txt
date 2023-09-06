@@ -1,0 +1,16 @@
+Added :
+
+Able to add Inventory
+Able to add bookings
+Able to add Users
+Able to create many to many mappings between Inventory and bookings
+
+Todo :
+Create functionality to check availability of a particular bike on a particular date.
+Create functionality to book a bike on a particular date and time. (Intervals)
+
+Adding Complexity to the API :
+Real world scenario when we have a particular bike with n numbers and each bike is different, we may have multiple
+same bikes
+Some kind of security to our api, token based, session
+Adding salt to our passwords

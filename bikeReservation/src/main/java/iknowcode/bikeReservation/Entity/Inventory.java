@@ -1,7 +1,9 @@
 package iknowcode.bikeReservation.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,20 +13,29 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bikeId;
-    private int totalbikes;
     private String bike_name;
     private String brand;
     private String engine;
-    @OneToMany(mappedBy = "bike")
-    private List<Bookings> booking;
+//    @OneToOne
+//    @JoinColumn(name = "bookingId")
+    @JsonIgnore
+    @ManyToMany()
+    @JoinTable(
+            name = "bookings_bikes",
+            joinColumns = @JoinColumn(name = "bikeId"),
+            inverseJoinColumns = @JoinColumn(name = "bookingId")
+    )
+    private List<Bookings> bookings;
 
-    public Inventory(int bikeId, int totalbikes, String bike_name, String brand, String engine, Bookings booking) {
+    public Inventory() {
+    }
+
+    public Inventory(int bikeId, String bike_name, String brand, String engine, List<Bookings> bookings) {
         this.bikeId = bikeId;
-        this.totalbikes = totalbikes;
         this.bike_name = bike_name;
         this.brand = brand;
         this.engine = engine;
-        this.booking = new ArrayList<>();
+        this.bookings = bookings;
     }
 
     public int getBikeId() {
@@ -33,14 +44,6 @@ public class Inventory {
 
     public void setBikeId(int bikeId) {
         this.bikeId = bikeId;
-    }
-
-    public int getTotalbikes() {
-        return totalbikes;
-    }
-
-    public void setTotalbikes(int totalbikes) {
-        this.totalbikes = totalbikes;
     }
 
     public String getEngine() {
@@ -66,5 +69,14 @@ public class Inventory {
     public void setBrand(String brand) {
         this.brand = brand;
     }
+
+    public List<Bookings> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Bookings> bookings) {
+        this.bookings = bookings;
+    }
+
 
 }

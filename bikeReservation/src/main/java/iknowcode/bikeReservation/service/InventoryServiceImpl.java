@@ -21,6 +21,13 @@ public class InventoryServiceImpl implements InventoryService {
     public List<Inventory> fetchAllInventory(){
         return (List<Inventory>)iRep.findAll();
     }
+
+    @Override
+    public Inventory fetchById(Long id) {
+        Optional<Inventory> i = iRep.findById(id);
+        return i.orElse(null);
+    }
+
     @Override
     public String updateInventory(Inventory iv, Long id){
         Optional<Inventory> i = iRep.findById(id);
@@ -38,7 +45,7 @@ public class InventoryServiceImpl implements InventoryService {
         return "Inventory Updated!!!";
     }
     @Override
-    public String delteInventoryById(Long id){
+    public String deleteInventoryById(Long id){
         Optional<Inventory> i = iRep.findById(id);
         if(i.isPresent()) {
             iRep.deleteById(id);
