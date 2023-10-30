@@ -19,18 +19,18 @@ public class Inventory {
 //    @OneToOne
 //    @JoinColumn(name = "bookingId")
     @JsonIgnore
-    @ManyToMany()
+    @ManyToOne()
     @JoinTable(
             name = "bookings_bikes",
             joinColumns = @JoinColumn(name = "bikeId"),
             inverseJoinColumns = @JoinColumn(name = "bookingId")
     )
-    private List<Bookings> bookings;
+    private Bookings bookings;
 
     public Inventory() {
     }
 
-    public Inventory(int bikeId, String bike_name, String brand, String engine, List<Bookings> bookings) {
+    public Inventory(int bikeId, String bike_name, String brand, String engine, Bookings bookings) {
         this.bikeId = bikeId;
         this.bike_name = bike_name;
         this.brand = brand;
@@ -70,13 +70,11 @@ public class Inventory {
         this.brand = brand;
     }
 
-    public List<Bookings> getBookings() {
+    public Bookings getBookings() {
         return bookings;
     }
 
-    public void setBookings(List<Bookings> bookings) {
+    public void setBookings(Bookings bookings) {
         this.bookings = bookings;
     }
-
-
 }

@@ -11,6 +11,21 @@ Create functionality to book a bike on a particular date and time. (Intervals)
 
 Adding Complexity to the API :
 Real world scenario when we have a particular bike with n numbers and each bike is different, we may have multiple
-same bikes
+each bike can be differentiated using the license plate, 
+
+Bikes
+
+bike_id, license_plateno, brand, engine we can create two tables | Although we can use license_plate_no as a primary but 
+it is not ideal for performance as it is a string 
+it is a candidate key which itself can be referred by primary key so it is safe to assume that bike_id as primary key
+will not turn our table into 2NF
+
+A bike can be uniquely identified by licesnse_plate_no and bike_id
+
 Some kind of security to our api, token based, session
 Adding salt to our passwords
+
+
+Why do we need a cache ?
+ - Since our application is going to be read heavy we can use some caching for storing values that are accessed frequently.
+

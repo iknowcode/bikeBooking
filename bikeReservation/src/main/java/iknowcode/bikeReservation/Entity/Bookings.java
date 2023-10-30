@@ -22,7 +22,7 @@ public class Bookings {
     private Timestamp start;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Timestamp end;
-    @ManyToMany()
+    @OneToMany()
     @JoinTable(
             name = "bookings_bikes",
             joinColumns = @JoinColumn(name = "bookingId"),
